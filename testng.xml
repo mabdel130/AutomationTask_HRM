@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="Orange_HRM" parallel="tests" thread-count="1" preserve-order="true">
+    <parameter name="browserName" value=""/>
+    <test name=" Test login and add also delete user by Admin for OrangeHRM">
+        <classes>
+
+            <class name="runners.AdminRunner"/>
+
+        </classes>
+    </test>
+</suite>
