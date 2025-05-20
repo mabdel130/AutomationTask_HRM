@@ -9,21 +9,23 @@ import pages.Admin;
 import static drivers.DriverHolder.getDriver;
 
 public class AdminStepdefs {
-    @Given("User login with user name {string} and password {string} to Orange HRM")
-    public void userLoginWithAndToOraneHRM(String USERNAME, String PASSWORD) {
-        new Admin(getDriver()).enterUsername(USERNAME).enterPassword(PASSWORD);
+
+    @Given("User login with valid username {string} and valid password {string} credentials")
+    public void userLoginWithValidUsernameAndValidPasswordCredentials(String username, String password) {
+        new Admin(getDriver())
+                .enterUsername(username)
+                .enterPassword(password);
     }
 
     @When("click on login button")
-    public void clickOnLoginButton() throws InterruptedException {
+    public void clickOnLoginButton() {
         new Admin(getDriver()).clickLoginButton();
 
     }
 
     @Then("user should be logged in successfully")
     public void userShouldBeLoggedInSuccessfully() {
-        String expectedMessage = "";
-        System.out.println("User logged in successfully");
+        String expectedMessage = "logged in successfully";
     }
 
     @Given("Admin click on Admin From Menu in Orange HRM")
@@ -55,10 +57,9 @@ public class AdminStepdefs {
         new Admin(getDriver()).clickAdminDropdown_List();
     }
 
-
-    @And("Admin set Employee Name {string}")
-    public void userSetEmployeeName(String EmployeeName) {
-        new Admin(getDriver()).setEmployee_Name(EmployeeName);
+    @And("Admin set Employee Name as {string}")
+    public void adminSetEmployeeNameAs(String employeeName) throws InterruptedException {
+        new Admin(getDriver()).setEmployee_Name(employeeName);
     }
 
     @And("Admin click on Status Button")
@@ -71,21 +72,19 @@ public class AdminStepdefs {
         new Admin(getDriver()).clickenableforstatus();
     }
 
-    @And("set User Name {string}")
-    public void setUserName(String Username) {
-        new Admin(getDriver()).setUserName(Username);
-
+    @And("set User Name as {string}")
+    public void setUserNameAs(String userName) {
+        new Admin(getDriver()).setUserName(userName);
     }
 
-    @And("set Password {string}")
-    public void setPassword(String addPassword) {
-        new Admin(getDriver()).setPassword(addPassword);
+    @And("set Password as {string}")
+    public void setPasswordAs(String password) {
+        new Admin(getDriver()).setPassword(password);
     }
 
-    @And("set Confirm Password {string}")
-    public void setConfirmPassword(String addPassword) {
-        new Admin(getDriver()).setConfirmPassword(addPassword);
-
+    @And("set Confirm Password as {string}")
+    public void setConfirmPasswordAs(String password) {
+        new Admin(getDriver()).setConfirmPassword(password);
     }
 
     @And("save Results")
@@ -95,24 +94,33 @@ public class AdminStepdefs {
     }
 
     @Then("Admin should verify record count increased by one")
-    public void adminShouldGetTheNumberOfRecordsIsIncreasedbyOne() {
+    public void adminShouldGetTheNumberOfRecordsIsIncreasedbyOne() throws InterruptedException {
         new Admin(getDriver()).Verifythatthenumberofrecordincreasedby1();
     }
 
-    @Given("Admin wants to delete user from Admin tab")
+    @Given("Admin search for user {string}")
+    public void adminSearchForUser(String userName) {
+        new Admin(getDriver()).searchByUserName(userName);
+    }
+
+    @And("Admin click on Search button")
+    public void adminClickOnSearchButton() {
+        new Admin(getDriver()).clickSearchButton();
+    }
+
+    @When("Admin wants to delete user from Admin tab")
     public void adminWantsToDeleteUserFromAdminTab() {
         new Admin(getDriver()).clickDeleteButton();
     }
 
-
-    @When("Admin Click on delete button from list of users")
+    @And("Admin Click on delete button from list of users")
     public void adminClickOnDeleteButtonFromListOfUsers() {
         new Admin(getDriver()).clickDeleteButton();
     }
 
 
     @And("Admin click on Ok button to confirm delete")
-    public void adminClickOnOkButtonToConfirmDelete() {
+    public void adminClickOnOkButtonToConfirmDelete() throws InterruptedException {
         new Admin(getDriver()).clickDeleteConfirmationButton();
     }
 
@@ -121,4 +129,6 @@ public class AdminStepdefs {
         new Admin(getDriver()).Verifythatthenumberofrecorddecreasedby1();
 
     }
+
+
 }

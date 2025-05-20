@@ -22,8 +22,8 @@ and automated testing, offering a robust set of features that simulate real-worl
 
 1. User Roles and Authentication:
 
- Supports multiple user roles such as Admin, Employee, and Manager, providing access control and security testing
- scenarios.
+Supports multiple user roles such as Admin, Employee, and Manager, providing access control and security testing
+scenarios.
 
 2. Employee Management:
 
@@ -31,15 +31,15 @@ Add, update, and manage employee records including personal details, job roles, 
 
 3. Leave Management:
 
- Request and approve leave applications. Automate test cases for leave workflows.
+Request and approve leave applications. Automate test cases for leave workflows.
 
 4. Recruitment Module:
 
- Manage job postings, applicant tracking, and candidate shortlisting.
+Manage job postings, applicant tracking, and candidate shortlisting.
 
 5. Performance Reviews:
 
- Evaluate and review employee performance.
+Evaluate and review employee performance.
 
 6. Payroll Management:
 
@@ -47,11 +47,11 @@ Test payroll calculations and salary disbursement functionalities.
 
 7. Customizable System:
 
- Modify system configurations like user roles, permissions, and workflows for testing various scenarios.
+Modify system configurations like user roles, permissions, and workflows for testing various scenarios.
 
 9. Responsive Design:
 
- Fully responsive across desktops, tablets, and mobile devices.
+Fully responsive across desktops, tablets, and mobile devices.
 
 ## Installation
 

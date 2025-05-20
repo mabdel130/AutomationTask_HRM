@@ -34,8 +34,11 @@ public class Admin extends BasePage {
     private final By password_Text = By.xpath("(//input[@class='oxd-input oxd-input--active' and @type='password' and @autocomplete='off'])[1]");
     private final By confirmPassword_Text = By.xpath("(//input[@type='password'])[2]");
     private final By saveButton = By.xpath("//button[@type='submit']");
+    private final By searchbyusername_Text = By.xpath("//div[@class='oxd-input-group oxd-input-field-bottom-space']//div//input[@class='oxd-input oxd-input--active']"); // (//input[@class='oxd-input oxd-input--active'])[2]
 
-    private final By delete_Button = By.xpath("(//i[@class='oxd-icon bi-trash'])[2]");
+    private final By username_Text = By.xpath("//button[normalize-space()='Search']");
+
+    private final By delete_Button = By.xpath("(//i[@class='oxd-icon bi-trash'])[1]");
     private final By deleted_confirmation = By.xpath("//button[contains(@class, 'oxd-button--label-danger') and contains(., 'Yes, Delete')]");
 
     public Admin enterUsername(String username) {
@@ -68,17 +71,24 @@ public class Admin extends BasePage {
 
 
     public int getNumberooRecordesfound() {
+
         WebElement countElement = shortWait(driver).until(ExpectedConditions.visibilityOfElementLocated(
-                By.xpath("//span[contains(.,'Records Found')]")
+                By.xpath("//span[contains(., 'Records Found') or contains(., 'No Records Found')]")
         ));
 
-        String countText = countElement.getText();
-        Matcher matcher = Pattern.compile("\\d+").matcher(countText);
+        String countText = countElement.getText().trim();
 
+
+        if (countText.equalsIgnoreCase("No Records Found")) {
+            return 0;
+        }
+
+
+        Matcher matcher = Pattern.compile("\\d+").matcher(countText);
         if (matcher.find()) {
             return Integer.parseInt(matcher.group());
         }
-        throw new RuntimeException("No record count found in: " + countText);
+        throw new RuntimeException("Failed to parse record count from: " + countText);
     }
 
     public void storeInitialRecordCount() {
@@ -107,10 +117,12 @@ public class Admin extends BasePage {
         return new Admin(driver);
     }
 
-    public Admin setEmployee_Name(String employeeName) {
+    public Admin setEmployee_Name(String employeeName) throws InterruptedException {
         longWait(driver).until(ExpectedConditions.visibilityOfElementLocated(employeeName_Text)).sendKeys(employeeName);
-        longWait(driver).until(ExpectedConditions.visibilityOfElementLocated(employeeName_Text)).sendKeys(Keys.ARROW_DOWN);
-        longWait(driver).until(ExpectedConditions.visibilityOfElementLocated(employeeName_Text)).sendKeys(Keys.ENTER);
+        Thread.sleep(2000);
+        Actions actions = new Actions(driver);
+        actions.sendKeys(Keys.ARROW_DOWN).perform();
+        actions.sendKeys(Keys.ENTER).perform();
         return new Admin(driver);
     }
 
@@ -154,12 +166,25 @@ public class Admin extends BasePage {
     }
 
 
-    public Admin Verifythatthenumberofrecordincreasedby1() {
+    public Admin Verifythatthenumberofrecordincreasedby1() throws InterruptedException {
         int newCount = getNumberooRecordesfound();
         if (newCount != initialRecordCount + 1) {
+            Thread.sleep(200);
             throw new RuntimeException("Count didn't increase. Initial: " + initialRecordCount + ", New: " + newCount);
 
         }
+        return new Admin(driver);
+    }
+
+    public Admin searchByUserName(String employeeUsername) {
+        longWait(driver).until(ExpectedConditions.visibilityOfElementLocated(searchbyusername_Text)).sendKeys(employeeUsername);
+        longWait(driver).until(ExpectedConditions.visibilityOfElementLocated(searchbyusername_Text)).sendKeys(Keys.ENTER);
+        return new Admin(driver);
+    }
+
+    public Admin clickSearchButton() {
+        longWait(getDriver()).until(ExpectedConditions.elementToBeClickable(username_Text));
+        driver.findElement(this.username_Text).click();
         return new Admin(driver);
     }
 
@@ -169,19 +194,20 @@ public class Admin extends BasePage {
         return new Admin(driver);
     }
 
-    public Admin clickDeleteConfirmationButton() {
-
+    public Admin clickDeleteConfirmationButton() throws InterruptedException {
         WebElement deleteBtn = new WebDriverWait(driver, Duration.ofSeconds(10))
                 .until(ExpectedConditions.presenceOfElementLocated(deleted_confirmation));
-
         JavascriptExecutor js = (JavascriptExecutor) driver;
         js.executeScript("arguments[0].click();", deleteBtn);
+        Thread.sleep(2000);
         return new Admin(driver);
     }
+
     public Admin Verifythatthenumberofrecorddecreasedby1() {
         int finalCount = getNumberooRecordesfound();
         if (finalCount != initialRecordCount) {
-            throw new RuntimeException("Count didn't reset. Initial: " + initialRecordCount + ", Final: " + finalCount);
+            throw new RuntimeException("Record count mismatch. Expected: "
+                    + initialRecordCount + ", Actual: " + finalCount);
         }
         return new Admin(driver);
     }
