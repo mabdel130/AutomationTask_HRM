@@ -1,6 +1,6 @@
 # OrangeHRM Application
 
-![SauceDemo Logo](https://opensource-demo.orangehrmlive.com/web/images/ohrm_branding.png?v=1721393199309)
+![Orange HRM Logo](https://opensource-demo.orangehrmlive.com/web/images/ohrm_branding.png?v=1721393199309)
 
 ## Table of Contents
 
