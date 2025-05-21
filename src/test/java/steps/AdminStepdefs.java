@@ -108,12 +108,9 @@ public class AdminStepdefs {
         new Admin(getDriver()).clickSearchButton();
     }
 
-    @When("Admin wants to delete user from Admin tab")
-    public void adminWantsToDeleteUserFromAdminTab() {
-        new Admin(getDriver()).clickDeleteButton();
-    }
 
-    @And("Admin Click on delete button from list of users")
+
+    @When("Admin click on delete button from list of users")
     public void adminClickOnDeleteButtonFromListOfUsers() {
         new Admin(getDriver()).clickDeleteButton();
     }

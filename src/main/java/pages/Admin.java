@@ -36,7 +36,7 @@ public class Admin extends BasePage {
     private final By saveButton = By.xpath("//button[@type='submit']");
     private final By searchbyusername_Text = By.xpath("//div[@class='oxd-input-group oxd-input-field-bottom-space']//div//input[@class='oxd-input oxd-input--active']"); // (//input[@class='oxd-input oxd-input--active'])[2]
 
-    private final By username_Text = By.xpath("//button[normalize-space()='Search']");
+    private final By search_Button = By.xpath("//button[normalize-space()='Search']");
 
     private final By delete_Button = By.xpath("(//i[@class='oxd-icon bi-trash'])[1]");
     private final By deleted_confirmation = By.xpath("//button[contains(@class, 'oxd-button--label-danger') and contains(., 'Yes, Delete')]");
@@ -178,13 +178,12 @@ public class Admin extends BasePage {
 
     public Admin searchByUserName(String employeeUsername) {
         longWait(driver).until(ExpectedConditions.visibilityOfElementLocated(searchbyusername_Text)).sendKeys(employeeUsername);
-        longWait(driver).until(ExpectedConditions.visibilityOfElementLocated(searchbyusername_Text)).sendKeys(Keys.ENTER);
         return new Admin(driver);
     }
 
     public Admin clickSearchButton() {
-        longWait(getDriver()).until(ExpectedConditions.elementToBeClickable(username_Text));
-        driver.findElement(this.username_Text).click();
+        longWait(getDriver()).until(ExpectedConditions.elementToBeClickable(search_Button));
+        driver.findElement(this.search_Button).click();
         return new Admin(driver);
     }
 
@@ -205,14 +204,14 @@ public class Admin extends BasePage {
 
     public Admin Verifythatthenumberofrecorddecreasedby1() {
         int finalCount = getNumberooRecordesfound();
-        if (finalCount != initialRecordCount) {
-            throw new RuntimeException("Record count mismatch. Expected: "
-                    + initialRecordCount + ", Actual: " + finalCount);
+        if (finalCount != 0) {
+            throw new RuntimeException("Record count mismatch. Expected: 0, Actual: " + finalCount);
         }
         return new Admin(driver);
     }
 
 }
+
 
 
 

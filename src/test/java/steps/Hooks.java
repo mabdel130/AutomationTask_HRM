@@ -5,7 +5,7 @@ import drivers.DriverFactory;
 import io.cucumber.java.After;
 import io.cucumber.java.Before;
 import org.apache.log4j.Logger;
-
+import io.qameta.allure.*;
 import java.awt.*;
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -65,6 +65,7 @@ public class Hooks {
 
     @After
     public void quiteDriver() {
+        Allure.addAttachment("Report", "Report5");
         quitBrowser(getDriver());
     }
 }

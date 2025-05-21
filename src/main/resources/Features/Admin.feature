@@ -18,12 +18,11 @@ Feature: Admin Functionality in Orange HRM
     When save Results
     Then Admin should verify record count increased by one
     Given Admin search for user "<userName>"
-    And Admin wants to delete user from Admin tab
-    When Admin click on Search button
-    And Admin Click on delete button from list of users
+    And Admin click on Search button
+    When Admin click on delete button from list of users
     And Admin click on Ok button to confirm delete
     Then Admin should verify record count decreased by one
     Examples:
-      | username | password | employeeName | userName | password   |
-      | Admin    | admin123 | A            | IslamAli | QKa1234567 |
+      | username | password | employeeName | userName   | password   |
+      | Admin    | admin123 | A            | SaidAhmedk | QKa1234567 |
 
