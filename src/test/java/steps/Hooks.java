@@ -15,6 +15,7 @@ import static drivers.DriverHolder.getDriver;
 import static drivers.DriverHolder.setDriver;
 import static pages.BasePage.quitBrowser;
 
+import static util.Utlity.generateDynamicPassword;
 import static util.Utlity.openBrowserNetworkTab;
 
 public class Hooks {
@@ -24,6 +25,7 @@ public class Hooks {
     public static String PROJECT_URL;
     public static String USERNAME;
     public static String PASSWORD;
+    public static String addpassword;
     public static String employeeName;
     public static String employeeUsername;
 
@@ -49,6 +51,9 @@ public class Hooks {
 
         employeeUsername = !prop.getProperty("employeeUsername").isEmpty() ?
                 prop.getProperty("employeeUsername") : faker.name().username();
+
+
+        addpassword = generateDynamicPassword();
 
 
         setDriver(DriverFactory.getNewInstance(""));
