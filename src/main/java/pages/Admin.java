@@ -4,7 +4,6 @@ import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
-
 import java.time.Duration;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -119,7 +118,6 @@ public class Admin extends BasePage {
 
     public Admin setEmployee_Name(String employeeName) throws InterruptedException {
         longWait(driver).until(ExpectedConditions.visibilityOfElementLocated(employeeName_Text)).sendKeys(employeeName);
-        Thread.sleep(2000);
         Actions actions = new Actions(driver);
         actions.sendKeys(Keys.ARROW_DOWN).perform();
         actions.sendKeys(Keys.ENTER).perform();
@@ -166,7 +164,7 @@ public class Admin extends BasePage {
     }
 
 
-    public Admin Verifythatthenumberofrecordincreasedby1() throws InterruptedException {
+    public Admin verifythatthenumberofrecordincreasedby1() throws InterruptedException {
         int newCount = getNumberooRecordesfound();
         if (newCount != initialRecordCount + 1) {
             Thread.sleep(200);
@@ -202,7 +200,7 @@ public class Admin extends BasePage {
         return new Admin(driver);
     }
 
-    public Admin Verifythatthenumberofrecorddecreasedby1() {
+    public Admin verifythatthenumberofrecorddecreasedby1() {
         int finalCount = getNumberooRecordesfound();
         if (finalCount != 0) {
             throw new RuntimeException("Record count mismatch. Expected: 0, Actual: " + finalCount);
@@ -215,6 +213,6 @@ public class Admin extends BasePage {
 
 
 
-    
-    
+
+
 

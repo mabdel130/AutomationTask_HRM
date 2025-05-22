@@ -4,8 +4,9 @@ import com.github.javafaker.Faker;
 import drivers.DriverFactory;
 import io.cucumber.java.After;
 import io.cucumber.java.Before;
-import org.apache.log4j.Logger;
+
 import io.qameta.allure.*;
+
 import java.awt.*;
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -18,7 +19,7 @@ import static pages.BasePage.quitBrowser;
 import static util.Utlity.generateDynamicPassword;
 import static util.Utlity.openBrowserNetworkTab;
 
-public class Hooks {
+public class Hooks_Page {
 
     Faker faker = new Faker();
     public static String PROJECT_NAME;

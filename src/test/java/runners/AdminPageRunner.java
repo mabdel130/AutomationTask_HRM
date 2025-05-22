@@ -13,7 +13,7 @@ import io.cucumber.testng.CucumberOptions;
                 "pretty", "html:target/HtmlReports/report.html", "json:target/JsonReport/report.json",
                 "junit:target/JunitReport/report.xml"}, tags = "@Admin"
 )
-public class AdminRunner extends AbstractTestNGCucumberTests {
+public class AdminPageRunner extends AbstractTestNGCucumberTests {
 
 
 }
