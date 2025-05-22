@@ -4,6 +4,7 @@ import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+
 import java.time.Duration;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -21,7 +22,6 @@ public class Admin extends BasePage {
     private final By USERNAME_TEXT = By.xpath("//input[@placeholder='Username']");
     private final By PASSWORD_TEXT = By.xpath("//input[@placeholder='Password']");
     private final By LOGIN_BUTTON = By.xpath("//button[normalize-space()='Login']");
-
 
     private final By admin_Button = By.linkText("Admin");
     private final By AddAdmin_Button = By.xpath("//button[normalize-space()='Add']");
@@ -74,14 +74,11 @@ public class Admin extends BasePage {
         WebElement countElement = shortWait(driver).until(ExpectedConditions.visibilityOfElementLocated(
                 By.xpath("//span[contains(., 'Records Found') or contains(., 'No Records Found')]")
         ));
-
         String countText = countElement.getText().trim();
-
 
         if (countText.equalsIgnoreCase("No Records Found")) {
             return 0;
         }
-
 
         Matcher matcher = Pattern.compile("\\d+").matcher(countText);
         if (matcher.find()) {
@@ -169,7 +166,6 @@ public class Admin extends BasePage {
         if (newCount != initialRecordCount + 1) {
             Thread.sleep(200);
             throw new RuntimeException("Count didn't increase. Initial: " + initialRecordCount + ", New: " + newCount);
-
         }
         return new Admin(driver);
     }
@@ -178,7 +174,6 @@ public class Admin extends BasePage {
         longWait(driver).until(ExpectedConditions.visibilityOfElementLocated(searchbyusername_Text)).sendKeys(employeeUsername);
         return new Admin(driver);
     }
-
     public Admin clickSearchButton() {
         longWait(getDriver()).until(ExpectedConditions.elementToBeClickable(search_Button));
         driver.findElement(this.search_Button).click();
@@ -192,11 +187,9 @@ public class Admin extends BasePage {
     }
 
     public Admin clickDeleteConfirmationButton() throws InterruptedException {
-        WebElement deleteBtn = new WebDriverWait(driver, Duration.ofSeconds(10))
-                .until(ExpectedConditions.presenceOfElementLocated(deleted_confirmation));
+        WebElement deleteBtn = new WebDriverWait(driver, Duration.ofSeconds(10)).until(ExpectedConditions.presenceOfElementLocated(deleted_confirmation));
         JavascriptExecutor js = (JavascriptExecutor) driver;
         js.executeScript("arguments[0].click();", deleteBtn);
-        Thread.sleep(2000);
         return new Admin(driver);
     }
 
