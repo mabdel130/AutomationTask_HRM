@@ -10,25 +10,25 @@ import static drivers.DriverHolder.getDriver;
 
 public class AdminStepdefs {
 
-    @Given("User login with valid username {string} and valid password {string} credentials")
+    @Given("Admin login with valid username {string} and valid password {string}")
     public void userLoginWithValidUsernameAndValidPasswordCredentials(String username, String password) {
         new Admin(getDriver())
                 .enterUsername(username)
                 .enterPassword(password);
     }
 
-    @When("click on login button")
+    @When("Admin click on login button")
     public void clickOnLoginButton() {
         new Admin(getDriver()).clickLoginButton();
 
     }
 
-    @Then("user should be logged in successfully")
+    @Then("Admin should be logged in successfully")
     public void userShouldBeLoggedInSuccessfully() {
         String expectedMessage = "logged in successfully";
     }
 
-    @Given("Admin click on Admin From Menu in Orange HRM")
+    @Given("Admin click on  Admin tab on the left side menu")
     public void adminClickOnAdminFromMenuInOrangeHRM() {
         new Admin(getDriver()).click_on_Admin_From_Menu();
     }
@@ -51,7 +51,7 @@ public class AdminStepdefs {
         new Admin(getDriver()).click_to_Add_new_Admin();
     }
 
-    @And("Admin click Admin Dropdown List")
+    @And("Admin click User role and select Admin from  Dropdown List")
     public void userClickAdminDropdownList() {
         new Admin(getDriver()).click_on_Admin_User();
         new Admin(getDriver()).clickAdminDropdown_List();
@@ -62,16 +62,12 @@ public class AdminStepdefs {
         new Admin(getDriver()).setEmployee_Name(employeeName);
     }
 
-    @And("Admin click on Status Button")
+    @And("Admin click on Status Button and  Admin click Enabled for Status")
     public void UserclickonStatusButton() {
         new Admin(getDriver()).clickStatusDropDown();
-    }
-
-    @And("Admin click Enabled for Status")
-    public void userClickEnabled() {
         new Admin(getDriver()).clickenableforstatus();
-    }
 
+    }
     @And("set User Name as {string}")
     public void setUserNameAs(String userName) {
         new Admin(getDriver()).setUserName(userName);
@@ -110,13 +106,13 @@ public class AdminStepdefs {
 
 
 
-    @When("Admin click on delete button from list of users")
+    @When("Admin click on delete button to Delete User")
     public void adminClickOnDeleteButtonFromListOfUsers() {
         new Admin(getDriver()).clickDeleteButton();
     }
 
 
-    @And("Admin click on Ok button to confirm delete")
+    @And("Admin click on delete button in Confirmation Message")
     public void adminClickOnOkButtonToConfirmDelete() throws InterruptedException {
         new Admin(getDriver()).clickDeleteConfirmationButton();
     }
