@@ -5,7 +5,7 @@
     <test name=" Test login and add also delete user by Admin for OrangeHRM">
         <classes>
 
-            <class name="runners.AdminRunner"/>
+            <class name="runners.AdminPageRunner"/>
 
         </classes>
     </test>

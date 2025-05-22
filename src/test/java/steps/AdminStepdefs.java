@@ -95,7 +95,7 @@ public class AdminStepdefs {
 
     @Then("Admin should verify record count increased by one")
     public void adminShouldGetTheNumberOfRecordsIsIncreasedbyOne() throws InterruptedException {
-        new Admin(getDriver()).Verifythatthenumberofrecordincreasedby1();
+        new Admin(getDriver()).verifythatthenumberofrecordincreasedby1();
     }
 
     @Given("Admin search for user {string}")
@@ -123,7 +123,7 @@ public class AdminStepdefs {
 
     @Then("Admin should verify record count decreased by one")
     public void adminShouldGetTheNumberOfRecordsIsDecreasedByOne() {
-        new Admin(getDriver()).Verifythatthenumberofrecorddecreasedby1();
+        new Admin(getDriver()).verifythatthenumberofrecorddecreasedby1();
 
     }
 
