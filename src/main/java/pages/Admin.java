@@ -115,9 +115,11 @@ public class Admin extends BasePage {
 
     public Admin setEmployee_Name(String employeeName) throws InterruptedException {
         longWait(driver).until(ExpectedConditions.visibilityOfElementLocated(employeeName_Text)).sendKeys(employeeName);
+        Thread.sleep(2000);
         Actions actions = new Actions(driver);
         actions.sendKeys(Keys.ARROW_DOWN).perform();
         actions.sendKeys(Keys.ENTER).perform();
+
         return new Admin(driver);
     }
 
